@@ -53,7 +53,12 @@ while option != 'q':
         print(f"Encrypted message:{ciphertext}\n")
     elif option == '2':
         ciphertext = str(input("Enter a message: ")).lower()
-        key = get_key_by_frequency_analysis(ciphertext)
+        key
+        try:
+            key = int(input("Enter a key (leave blank to find key automatically): "))
+        except:
+            print("Calculating key based on letter frequency")
+            key = get_key_by_frequency_analysis(ciphertext)
         plaintext = decrypt(ciphertext, key)
         print(f"Key: {key}\n")
         print(f"Decrypted message: {plaintext}\n")
