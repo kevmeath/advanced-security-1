@@ -50,10 +50,10 @@ while option != 'q':
         plaintext = str(input("Enter a message: ")).lower()
         key = int(input("Enter a key: "))
         ciphertext = encrypt(plaintext, key)
-        print("Encrypted message:\n" + ciphertext)
+        print(f"Encrypted message:{ciphertext}\n")
     elif option == '2':
         ciphertext = str(input("Enter a message: ")).lower()
         key = get_key_by_frequency_analysis(ciphertext)
         plaintext = decrypt(ciphertext, key)
-        print("Key: " + key + "\n")
-        print("Decrypted message: " + plaintext + "\n")
+        print(f"Key: {key}\n")
+        print(f"Decrypted message: {plaintext}\n")
