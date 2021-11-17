@@ -1,8 +1,8 @@
 import tkinter as tk
 
 # string of numbers and operators to help with input validation
-numbers = "0123456789"
-operators = "/*-+."
+numbers = '0123456789'
+operators = '/*-+.'
 
 
 # Application
@@ -17,14 +17,14 @@ class Application(tk.Frame):
             self.columnconfigure(i, weight=1)
 
         # Allow widgets to scale with window size
-        self.pack(fill="both", expand=True)
+        self.pack(fill='both', expand=True)
 
         # StringVar for holding user input
         self.input = tk.StringVar()
-        self.input.set("")
+        self.input.set('')
 
         # Label for displaying user input
-        tk.Label(self, textvariable=self.input).grid(row=0, column=0, columnspan=5, sticky="NESW")
+        tk.Label(self, textvariable=self.input).grid(row=0, column=0, columnspan=5, sticky='NESW')
 
         self.create_buttons()
 
@@ -34,31 +34,31 @@ class Application(tk.Frame):
         for i in range(3):
             for j in range(3):
                 index = (i+j+1)+2*i
-                tk.Button(self, text=str(index), command=lambda char=index: self.enter_char(str(char))).grid(row=3-i, column=j, padx=5, pady=5, sticky="NESW")
+                tk.Button(self, text=str(index), command=lambda char=index: self.enter_char(str(char))).grid(row=3-i, column=j, padx=5, pady=5, sticky='NESW')
 
         # 0 button
-        tk.Button(self, text="0", command=lambda: self.enter_char("0")).grid(row=4, column=0, padx=5, pady=5, sticky="NESW")
+        tk.Button(self, text='0', command=lambda: self.enter_char('0')).grid(row=4, column=0, padx=5, pady=5, sticky='NESW')
 
         # Operator buttons
         for i in range(4):
-            tk.Button(self, text=str(operators[i]), command=lambda char=operators[i]: self.enter_char(str(char))).grid(row=i+1, column=3, padx=5, pady=5, sticky="NESW")
+            tk.Button(self, text=str(operators[i]), command=lambda char=operators[i]: self.enter_char(str(char))).grid(row=i+1, column=3, padx=5, pady=5, sticky='NESW')
 
         # Decimal button
-        tk.Button(self, text=str("."), command=lambda: self.enter_char(".")).grid(row=4, column=1, padx=5, pady=5, sticky="NESW")
+        tk.Button(self, text=str('.'), command=lambda: self.enter_char('.')).grid(row=4, column=1, padx=5, pady=5, sticky='NESW')
 
         # Equals/Answer button
-        tk.Button(self, text="=", command=self.answer).grid(row=4, column=4, padx=5, pady=5, sticky="NESW")
+        tk.Button(self, text='=', command=self.answer).grid(row=4, column=4, padx=5, pady=5, sticky='NESW')
 
         # Backspace button
-        tk.Button(self, text="\u232b", command=self.backspace).grid(row=1, column=4, padx=5, pady=5, sticky="NESW")
+        tk.Button(self, text='\u232b', command=self.backspace).grid(row=1, column=4, padx=5, pady=5, sticky='NESW')
 
         # Clear button
-        tk.Button(self, text="C", command=self.clear).grid(row=2, column=4, padx=5, pady=5, sticky="NESW")
+        tk.Button(self, text='C', command=self.clear).grid(row=2, column=4, padx=5, pady=5, sticky='NESW')
 
     # Returns the last character entered
     def get_last_char(self):
         if not self.input.get():
-            return ""
+            return ''
         else:
             return self.input.get()[-1]
 
@@ -79,7 +79,7 @@ class Application(tk.Frame):
     # Clears input. Called when clear button is pressed
     def clear(self):
         if self.get_last_char():
-            self.input.set("")
+            self.input.set('')
 
     # Evaluates the expression in the input box. Called when equals button is pressed
     def answer(self):
@@ -89,8 +89,8 @@ class Application(tk.Frame):
 
 # Set up main window
 root = tk.Tk()
-root.title("Calculator")
-root.geometry("240x240")
+root.title('Calculator')
+root.geometry('240x240')
 #root.resizable(False, False)
 app = Application(parent=root)
 app.mainloop()
