@@ -1,8 +1,9 @@
 import tkinter as tk
+import re
 
 # string of numbers and operators to help with input validation
 numbers = '0123456789'
-operators = '/*-+.'
+operators = '/*-+'
 
 
 # Application
@@ -65,10 +66,11 @@ class Application(tk.Frame):
     # Appends a character to input. Called when a number or operator button is pressed
     def enter_char(self, nextInput: str):
         # The first character must be a number
-        if not self.get_last_char() and nextInput in numbers:
-            self.input.set(nextInput)
-        # An operator or decimal must be surrounded by numbers
-        elif nextInput in numbers or self.get_last_char() not in operators:
+        # There can be only one decimal per number
+        # An operator must be surrounded by zeros
+        if (nextInput in numbers) or\
+                (nextInput == '.' and '.' not in re.split('[/*-+]', self.input.get())[-1]) or\
+                (nextInput in operators and self.get_last_char() not in operators+'.'):
             self.input.set(self.input.get() + nextInput)
 
     # Removes the last character of input. Called when backspace is pressed
@@ -91,6 +93,5 @@ class Application(tk.Frame):
 root = tk.Tk()
 root.title('Calculator')
 root.geometry('240x240')
-#root.resizable(False, False)
 app = Application(parent=root)
 app.mainloop()
